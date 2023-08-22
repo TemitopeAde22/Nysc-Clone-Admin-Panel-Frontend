@@ -1,13 +1,61 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:ital@0;1&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,300&family=Tilt+Prism&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Belanosima&family=Fira+Sans:ital@0;1&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,300&family=Tilt+Prism&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Belanosima&family=Fira+Sans:ital@0;1&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,300;1,500&family=Tilt+Prism&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,400;1,500&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@keyframes slide-in-right {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.slide-in-right {
+    /* animation: slide-in-right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; */
+    animation: slide-in-right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes slide-bottom {
+    0% {
+        transform: translateY(-10%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+.slide-bottom {
+    animation: slide-bottom 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+/* *::-webkit-scrollbar {
+    width: 10px;
+} */
+
+@layer components {
+    .side-bar {
+        @apply lg:w-[18%] md:w-[25%] sm:w-[60%] px-3 py-2  bg-[#ffff] border sm:left-[2px] top-0 -left-1 slide-in-right;
+    }
+    .sub-section {
+        @apply items-center px-2 hover:bg-white rounded-md  hover:text-black hover:font-semibold flex gap-x-3 mb-2 
+    cursor-pointer text-[#f5f5f5] py-2;
+    }
+    .drop-down {
+        @apply flex relative border border-black items-center justify-between w-full hover:text-white 
+         hover:bg-[#3c763d] py-1 px-2 rounded-md cursor-pointer;
+    }
+    .input {
+        @apply outline-none border py-2 font-Roboto px-3 placeholder:text-[13px] border-[#d5d0d0] rounded-md w-full text-[13px];
+    }
 }
