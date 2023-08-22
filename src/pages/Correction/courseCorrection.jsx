@@ -14,7 +14,7 @@ import {
 } from "../../features/userUpdateSlice.jsx"
 import Loader from "../../components/Loader"
 
-function PPAPosting() {
+function CourseCorrection() {
     const user = useSelector((state) => state.user2.value)
     const dispatch = useDispatch()
     const [edit, setEdit] = useState(false)
@@ -108,7 +108,7 @@ function PPAPosting() {
                 <div>
                     {" "}
                     <h3 className="font-Belanosima text-[20px] md:text-[25px] mb-3">
-                        NYSC PPA Posting / Reposting
+                        NYSC Course Correction
                     </h3>
                     <form
                         className="w-full flex flex-col gap-y-4"
@@ -178,37 +178,12 @@ function PPAPosting() {
                                     type={"text"}
                                     disabled={!edit}
                                     register={register}
-                                    name="statePostedTo"
-                                    label="State Posted"
-                                    defaultValue={user.user.statePostedTo}
+                                    name="course"
+                                    label="Course"
+                                    defaultValue={user.user.course}
                                 />
                             </div>
-                            <div className="flex flex-col md:flex-row gap-y-4 md:gap-x-4">
-                                <InputField
-                                    type={"text"}
-                                    disabled={!edit}
-                                    register={register}
-                                    name="Batch"
-                                    label="Batch"
-                                    defaultValue={user.user.Batch}
-                                />
-                                <InputField
-                                    type={"text"}
-                                    disabled={!edit}
-                                    register={register}
-                                    name=" StateCode"
-                                    label="State Code"
-                                    defaultValue={user.user.StateCode}
-                                />
-                                <InputField
-                                    type={"text"}
-                                    disabled={!edit}
-                                    register={register}
-                                    name="PPA"
-                                    label="PPA"
-                                    defaultValue={user.user.PPA}
-                                />
-                            </div>
+
                             <div className="mt-3">
                                 <button
                                     type="submit"
@@ -250,5 +225,4 @@ const InputField = ({
     </div>
 )
 
-
-export default PPAPosting
+export default CourseCorrection

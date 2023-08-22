@@ -111,7 +111,7 @@ function NameCorrection() {
                 <div>
                     {" "}
                     <h3 className="font-Belanosima text-[20px] md:text-[25px] mb-3">
-                        NYSC Correction of User Details / Posting
+                        NYSC General Correction / Posting
                     </h3>
                     <form
                         className="w-full flex flex-col gap-y-4"
@@ -275,7 +275,6 @@ function NameCorrection() {
                                         disabled={!edit}
                                     />
                                 </div>
-
                                 <SelectInput
                                     label="School Name"
                                     name="school"
@@ -287,7 +286,6 @@ function NameCorrection() {
                                     defaultValue={user.user.school}
                                     disabled={!edit}
                                 />
-
                                 <InputField
                                     type={"text"}
                                     disabled={!edit}
@@ -295,6 +293,22 @@ function NameCorrection() {
                                     name="Batch"
                                     label="Batch"
                                     defaultValue={user.user.Batch}
+                                />
+                                <InputField
+                                    type={"text"}
+                                    disabled={!edit}
+                                    register={register}
+                                    name=" StateCode"
+                                    label="State Code"
+                                    defaultValue={user.user.StateCode}
+                                />
+                                <InputField
+                                    type={"text"}
+                                    disabled={!edit}
+                                    register={register}
+                                    name="PPA"
+                                    label="PPA"
+                                    defaultValue={user.user.PPA}
                                 />
                             </div>
                             <div className="mt-3">

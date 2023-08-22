@@ -80,7 +80,6 @@ function Sidebar() {
                             <Component
                                 title={"Assign State Code"}
                                 Icon={AiOutlineUserAdd}
-                                onClick={() => navigate("assign-state-code")}
                             />
                             {/* <Component
                                 title={"Post User"}
@@ -110,13 +109,14 @@ function Sidebar() {
                     {openCatalog === 3 && (
                         <div className=" pb-2 bg-[#3c763d]/70  mt-1 px-2 py-1 rounded-md text-black font-Roboto slide-bottom">
                             <Component
-                                title={"Name Correction"}
+                                title={"General Correction"}
                                 Icon={AiOutlineUserAdd}
-                                onClick={() => navigate("name-correction")}
+                                onClick={() => navigate("general-correction")}
                             />
                             <Component
                                 title={"Course Correction"}
                                 Icon={AiOutlineUserAdd}
+                                onClick={() => navigate("course-correction")}
                             />
                             {/* <Component
                                 title={"Post User"}

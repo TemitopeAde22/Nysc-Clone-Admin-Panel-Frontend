@@ -6,12 +6,10 @@ import ResetPassword from "./pages/Reset-password/ResetPassword"
 import MainLayout from "./components/MainLayout"
 import DashBoard from "./pages/Dashboard/DashBoard"
 import User from "./pages/user/User"
-import CampPosting from "./pages/Camp Posting/campPosting"
-// import CallUpNo from "./pages/Camp Posting/CallUpNo"
-// import StateCode from "./pages/PPA Posting/StateCode"
 import PPAPosting from "./pages/PPA Posting/PPAPosting"
 import ProtectedRoute from "./components/HOC"
 import NameCorrection from "./pages/Correction/NameCorrection"
+import CourseCorrection from "./pages/Correction/courseCorrection"
 
 function App() {
     return (
@@ -22,16 +20,12 @@ function App() {
                 <Route path="/reset-password" element={<ResetPassword />} />
                 <Route path="/admin" element={<MainLayout />}>
                     <Route
-                        path="name-correction"
+                        path="general-correction"
                         element={<ProtectedRoute component={NameCorrection} />}
                     />
                     <Route
                         index
                         element={<ProtectedRoute component={DashBoard} />}
-                    />
-                    <Route
-                        path="camp-posting"
-                        element={<ProtectedRoute component={CampPosting} />}
                     />
                     <Route
                         path="user"
@@ -40,6 +34,12 @@ function App() {
                     <Route
                         path="ppa-posting"
                         element={<ProtectedRoute component={PPAPosting} />}
+                    />
+                    <Route
+                        path="course-correction"
+                        element={
+                            <ProtectedRoute component={CourseCorrection} />
+                        }
                     />
                 </Route>
             </Routes>
