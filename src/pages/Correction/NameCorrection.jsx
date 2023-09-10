@@ -22,6 +22,7 @@ function NameCorrection() {
     const dispatch = useDispatch()
     const [edit, setEdit] = useState(false)
     const loading = useSelector((state) => state.update.loading)
+    const [successMessage, setSuccessMessage] = useState("")
 
     //react hook form
     const {
@@ -47,12 +48,20 @@ function NameCorrection() {
                 toast.success("User data fetched successfully", {
                     position: "top-right",
                 })
+                setSuccessMessage("User data fetched Successfully!!")
+                setTimeout(() => {
+                    setSuccessMessage("")
+                }, 3000)
             } else {
                 console.error("Unexpected response status:", response.status)
                 if (response.data && response.data.message) {
                     toast.error(response.data.message, {
                         position: "top-right",
                     })
+                    setSuccessMessage(response.data.message)
+                    setTimeout(() => {
+                        setSuccessMessage("")
+                    }, 3000)
                 } else {
                     toast.error("Unexpected response status", {
                         position: "top-right",
@@ -68,6 +77,10 @@ function NameCorrection() {
                 toast.error("No response received", { position: "top-right" })
             } else {
                 toast.error("An error occurred", { position: "top-right" })
+                setSuccessMessage("An Error Occured")
+                setTimeout(() => {
+                    setSuccessMessage("")
+                }, 3000)
             }
         }
     }
@@ -92,6 +105,10 @@ function NameCorrection() {
             if (response.status === 200) {
                 dispatch(updateUserSuccess())
                 toast.success(response.data.message)
+                setSuccessMessage("User Data Updated Successfully!!")
+                setTimeout(() => {
+                    setSuccessMessage("")
+                }, 3000)
             } else {
                 throw new Error(response.data.message)
             }
@@ -100,6 +117,10 @@ function NameCorrection() {
             dispatch(updateUserFailure(err.message))
             const errorMessage = "An error occured"
             toast.error(errorMessage)
+            setSuccessMessage("An Error Occured")
+            setTimeout(() => {
+                setSuccessMessage("")
+            }, 3000)
         }
         console.log(data)
     }
@@ -122,7 +143,7 @@ function NameCorrection() {
                                 className="w-full md:w-[70%] border outline-none py-2 px-3 rounded-md shadow-md"
                                 type="text"
                                 name="userId"
-                                placeholder="Enter Corper ID/Call up Number"
+                                placeholder="Enter Corper ID/E-mail"
                                 {...register("userId", { required: true })}
                             />
                             {errors.userId && (
@@ -152,6 +173,14 @@ function NameCorrection() {
                                     }}
                                 />
                             </div>
+                            <h1>
+                                {successMessage && (
+                                    <div className="text-green-600 font-Belanosima text-center">
+                                        {successMessage}
+                                    </div>
+                                )}
+                            </h1>
+
                             <div className="mt-7 flex flex-col md:flex-row gap-y-4  md:gap-x-4">
                                 <InputField
                                     type={"text"}
@@ -298,7 +327,7 @@ function NameCorrection() {
                                     type={"text"}
                                     disabled={!edit}
                                     register={register}
-                                    name=" StateCode"
+                                    name="StateCode"
                                     label="State Code"
                                     defaultValue={user.user.StateCode}
                                 />

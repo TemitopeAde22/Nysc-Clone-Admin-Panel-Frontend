@@ -8,7 +8,9 @@ import {
     setUsersError,
 } from "../../features/allUserSlice"
 import axios from "axios"
+import { useNavigate } from "react-router-dom"
 function User() {
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     const allUsers = useSelector((state) => state.allusers.allUsers)
     useEffect(() => {
@@ -44,16 +46,16 @@ function User() {
             dataIndex: "email",
         },
         {
-            title: "Mobile",
-            dataIndex: "mobile",
+            title: "Gender",
+            dataIndex: "gender",
         },
         {
             title: "Call Up Number",
             dataIndex: "CallUpNumber",
         },
         {
-            title: "Orientation Camp",
-            dataIndex: "OrientationCamp",
+            title: "State Code",
+            dataIndex: "StateCode",
         },
         {
             title: "State Posted",
@@ -65,12 +67,13 @@ function User() {
         if (allUsers[i].role !== "admin") {
             data.push({
                 key: i,
+                _id: allUsers[i]._id,
                 firstname: allUsers[i].firstname,
                 lastname: allUsers[i].lastname,
                 email: allUsers[i].email,
-                mobile: allUsers[i].mobile,
+                gender: allUsers[i].gender,
                 CallUpNumber: allUsers[i].CallUpNumber,
-                OrientationCamp: allUsers[i].OrientationCamp,
+                StateCode: allUsers[i].StateCode,
                 statePostedTo: allUsers[i].statePostedTo,
             })
         }
@@ -80,7 +83,17 @@ function User() {
             <h3 className=" font-Belanosima text-[20px] md:text-[25px] mb-3">
                 All Users
             </h3>
-            <Table columns={columns} dataSource={data} />
+            <Table
+                columns={columns}
+                dataSource={data}
+                onRow={(record, rowIndex) => {
+                    return {
+                        onClick: (event) => {
+                               navigate(`/admin/userprofile/${record._id}`)
+                        },
+                    }
+                }}
+            />
         </div>
     )
 }

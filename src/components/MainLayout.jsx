@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react"
 import Sidebar from "./Sidebar"
 import { AiOutlineMenuUnfold } from "react-icons/ai"
 import { MdNotifications } from "react-icons/md"
-import profileImage from "../images/profile.jpg"
+// import profileImage from "../images/profile.jpg"
 import { Outlet } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { base_url } from "../utils/baseUrl"
@@ -49,7 +49,7 @@ function MainLayout() {
                             />
                             <img
                                 className="h-9 rounded-full w-9 object-cover"
-                                src={profileImage}
+                                src={user.Image}
                                 alt=""
                             />
                         </div>
@@ -88,8 +88,8 @@ function MainLayout() {
                                         </div>
 
                                         <img
-                                            className="h-9 rounded-full w-9 object-cover"
-                                            src={profileImage}
+                                            className="h-12 rounded-full w-12 object-cover"
+                                            src={user.Image}
                                             alt=""
                                         />
                                         {/* <BsPersonCircle className="h-8 w-8" /> */}

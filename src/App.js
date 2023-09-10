@@ -10,6 +10,8 @@ import PPAPosting from "./pages/PPA Posting/PPAPosting"
 import ProtectedRoute from "./components/HOC"
 import NameCorrection from "./pages/Correction/NameCorrection"
 import CourseCorrection from "./pages/Correction/courseCorrection"
+import Calender from "./pages/Calender/Calender"
+import Profile from "./pages/Profile/userProfile"
 
 function App() {
     return (
@@ -40,6 +42,14 @@ function App() {
                         element={
                             <ProtectedRoute component={CourseCorrection} />
                         }
+                    />
+                    <Route
+                        path="calender"
+                        element={<ProtectedRoute component={Calender} />}
+                    />
+                    <Route
+                        path="userprofile/:id"
+                        element={<ProtectedRoute component={Profile} />}
                     />
                 </Route>
             </Routes>

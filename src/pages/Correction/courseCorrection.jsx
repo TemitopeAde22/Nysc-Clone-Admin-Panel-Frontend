@@ -119,7 +119,7 @@ function CourseCorrection() {
                                 className="w-full md:w-[70%] border outline-none py-2 px-3 rounded-md shadow-md"
                                 type="text"
                                 name="userId"
-                                placeholder="Enter Corper ID/Call up Number"
+                                placeholder="Enter Corper ID/E-mail"
                                 {...register("userId", { required: true })}
                             />
                             {errors.userId && (

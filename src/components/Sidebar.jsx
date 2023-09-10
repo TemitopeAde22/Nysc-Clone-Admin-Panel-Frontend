@@ -5,7 +5,7 @@ import {
     AiOutlineUser,
     AiOutlineUserAdd,
 } from "react-icons/ai"
-
+import { useDispatch } from "react-redux"
 import { TbDiscountCheck } from "react-icons/tb"
 import {
     MdArrowDropUp,
@@ -16,7 +16,8 @@ import {
 } from "react-icons/md"
 import { FaCalendarCheck } from "react-icons/fa"
 import { useNavigate } from "react-router-dom"
-
+import { BiLogIn } from "react-icons/bi"
+import { logout } from "../features/authSlice"
 function Sidebar() {
     const [openCatalog, setOpenCatalog] = useState(null)
 
@@ -28,6 +29,16 @@ function Sidebar() {
         }
     }
     const navigate = useNavigate()
+
+    const dispatch = useDispatch()
+    const logOut = async () => {
+        localStorage.removeItem("token")
+        window.localStorage.removeItem("isLoggedIn")
+        console.log("User logged out successfully")
+        dispatch(logout())
+        navigate("/")
+    }
+
     const toUser = () => {
         navigate("user")
     }
@@ -128,8 +139,17 @@ function Sidebar() {
                 <div className="flex flex-col">
                     <Heading title={"Inbox"} Icon={MdEmail} />
                     <Heading title={"Chat"} Icon={BsFillChatQuoteFill} />
-                    <Heading title={"Calender"} Icon={FaCalendarCheck} />
+                    <Heading
+                        onClick={() => navigate("calender")}
+                        title={"Calender"}
+                        Icon={FaCalendarCheck}
+                    />
                     <Heading title={"Settings"} Icon={MdOutlineSettings} />
+                    <Heading
+                        onClick={logOut}
+                        title={"Log out"}
+                        Icon={BiLogIn}
+                    />
                 </div>
                 {/* <div className="flex flex-col">
                     <Heading title={"Inbox"} Icon={MdEmail} />

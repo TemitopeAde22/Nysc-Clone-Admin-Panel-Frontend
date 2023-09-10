@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { useForm } from "react-hook-form"
 import { Link, useNavigate } from "react-router-dom"
 import ToastMsg from "../../../src/components/ToastContainer"
@@ -8,8 +8,11 @@ import { base_url } from "../../utils/baseUrl"
 import axios from "axios"
 import { login } from "../../features/authSlice"
 import Loader from "../../components/Loader"
+import { MdOutlineRemoveRedEye } from "react-icons/md"
+import { AiOutlineEyeInvisible } from "react-icons/ai"
 function Login() {
     const dispatch = useDispatch()
+    const [showPassword, setShowPassword] = useState(false)
     const {
         register,
         handleSubmit,
@@ -28,7 +31,7 @@ function Login() {
                 // Notify success using toast
                 if (response.status && response.status === 200) {
                     localStorage.setItem("token", response.data.token)
-                    localStorage.setItem("user", JSON.stringify(response.data))
+                    window.localStorage.setItem("isLoggedIn", true)
                 }
                 setTimeout(() => {
                     navigate("/admin")
@@ -105,19 +108,38 @@ function Login() {
                                 >
                                     Password
                                 </label>
-                                <input
-                                    type="password"
-                                    placeholder="Enter Password"
-                                    className="outline-none border py-1 px-3 placeholder:text-[13px] border-[#d5d0d0] rounded-md"
-                                    {...register("Password", {
-                                        required: true,
-                                    })}
-                                />
-                                {errors.Password && (
-                                    <p className="italic text-[10px] font-semibold  text-red-500">
-                                        Password is required.
-                                    </p>
-                                )}
+                                <div className="flex items-center border border-[#d5d0d0] rounded-md pr-2 ">
+                                    <input
+                                        type={
+                                            showPassword ? "text" : "password"
+                                        }
+                                        placeholder="Enter Password"
+                                        className="outline-none w-full py-1 px-3 placeholder:text-[13px]"
+                                        {...register("Password", {
+                                            required: true,
+                                        })}
+                                    />
+                                    {errors.Password && (
+                                        <p className="italic text-[10px] font-semibold  text-red-500">
+                                            Password is required.
+                                        </p>
+                                    )}
+                                    {showPassword ? (
+                                        <MdOutlineRemoveRedEye
+                                            onClick={() =>
+                                                setShowPassword((prev) => !prev)
+                                            }
+                                            className="h-5 w-7"
+                                        />
+                                    ) : (
+                                        <AiOutlineEyeInvisible
+                                            onClick={() =>
+                                                setShowPassword((prev) => !prev)
+                                            }
+                                            className="h-5 w-7"
+                                        />
+                                    )}
+                                </div>
                             </div>
 
                             <button
